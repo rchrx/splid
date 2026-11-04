@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  Calculator, 
-  Sun, 
-  Moon, 
-  Plus, 
-  ChevronDown, 
-  FolderPlus, 
+import {
+  Calculator,
+  Sun,
+  Moon,
+  Plus,
+  ChevronDown,
+  FolderPlus,
   Check,
   Users2
 } from 'lucide-react';
@@ -40,11 +40,10 @@ export const Navbar = ({
   return (
     <header className="fixed top-0 left-0 right-0 z-40 transition-all duration-300 py-3 px-3 sm:px-6 lg:px-8">
       <div
-        className={`max-w-7xl mx-auto rounded-3xl transition-all duration-300 ${
-          scrolled
+        className={`max-w-7xl mx-auto rounded-3xl transition-all duration-300 ${scrolled
             ? 'glass-panel-elevated py-2.5 px-3.5 sm:px-6 shadow-2xl border-white/10 dark:border-white/10 border-slate-200/80'
             : 'glass-panel py-3 px-3.5 sm:px-6 border-white/5 dark:border-white/5 border-slate-200/60'
-        } flex items-center justify-between backdrop-blur-xl`}
+          } flex items-center justify-between backdrop-blur-xl`}
       >
         {/* Brand Logo & Group Switcher */}
         <div className="flex items-center gap-2.5 sm:gap-4 min-w-0">
@@ -53,7 +52,7 @@ export const Navbar = ({
             className="flex items-center gap-2.5 group focus:outline-none shrink-0"
           >
             <div className="relative flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-tr from-purple-500/20 via-violet-500/10 to-cyan-500/20 border border-purple-500/30 p-1.5 shadow-neon-purple transition-transform duration-300 group-hover:scale-105 shrink-0 backdrop-blur-md">
-              <img src="/logo.png" alt="Dibbl Logo" className="w-full h-full object-contain drop-shadow-[0_2px_8px_rgba(168,85,247,0.5)]" />
+              <img src={`${import.meta.env.BASE_URL}/logo.png`} alt="Dibbl Logo" className="w-full h-full object-contain drop-shadow-[0_2px_8px_rgba(168,85,247,0.5)]" />
             </div>
 
             <div className="flex flex-col">
@@ -104,11 +103,10 @@ export const Navbar = ({
                             onSelectGroup(grp.id);
                             setGroupDropdownOpen(false);
                           }}
-                          className={`w-full flex items-center justify-between px-3.5 py-2 text-xs transition-colors ${
-                            activeGroupId === grp.id
+                          className={`w-full flex items-center justify-between px-3.5 py-2 text-xs transition-colors ${activeGroupId === grp.id
                               ? 'bg-purple-600/15 text-purple-600 dark:text-purple-300 font-bold'
                               : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/10'
-                          }`}
+                            }`}
                         >
                           <span className="flex items-center gap-2 truncate">
                             <span className="shrink-0">{grp.emoji}</span>
@@ -169,11 +167,10 @@ export const Navbar = ({
                         onCurrencyChange(curr.code);
                         setCurrencyDropdownOpen(false);
                       }}
-                      className={`w-full flex items-center justify-between px-3.5 py-2 text-xs transition-colors ${
-                        currency === curr.code
+                      className={`w-full flex items-center justify-between px-3.5 py-2 text-xs transition-colors ${currency === curr.code
                           ? 'bg-purple-600/15 text-purple-600 dark:text-purple-300 font-bold'
                           : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/10'
-                      }`}
+                        }`}
                     >
                       <span className="flex items-center gap-2">
                         <span>{curr.flag}</span>

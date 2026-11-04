@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Sparkles, 
-  ArrowRight, 
-  ShieldCheck, 
+import {
+  Sparkles,
+  ArrowRight,
+  ShieldCheck,
   Plus,
   X,
   Users
@@ -55,7 +55,7 @@ export const WelcomeState = ({ onCreateGroup, currency, onCurrencyChange }) => {
         {/* Hero Header */}
         <div className="text-center mb-8">
           <div className="w-20 h-20 rounded-3xl bg-gradient-to-tr from-purple-500/20 via-violet-500/10 to-cyan-500/20 border border-purple-500/30 shadow-glass-glow p-3.5 mx-auto mb-4 flex items-center justify-center backdrop-blur-xl">
-            <img src="/logo.png" alt="Dibbl Logo" className="w-full h-full object-contain drop-shadow-[0_4px_16px_rgba(168,85,247,0.55)]" />
+            <img src={`${import.meta.env.BASE_URL}/logo.png`} alt="Dibbl Logo" className="w-full h-full object-contain drop-shadow-[0_4px_16px_rgba(168,85,247,0.55)]" />
           </div>
 
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel border-purple-500/30 text-xs font-semibold text-purple-600 dark:text-purple-300 mb-3 shadow-glass">
@@ -106,11 +106,10 @@ export const WelcomeState = ({ onCreateGroup, currency, onCurrencyChange }) => {
                       key={em}
                       type="button"
                       onClick={() => setEmoji(em)}
-                      className={`w-11 h-11 rounded-2xl flex items-center justify-center text-xl transition-all duration-200 shrink-0 ${
-                        isSelected
+                      className={`w-11 h-11 rounded-2xl flex items-center justify-center text-xl transition-all duration-200 shrink-0 ${isSelected
                           ? 'bg-purple-500/20 border-2 border-purple-500 dark:border-purple-400 shadow-[0_0_14px_rgba(168,85,247,0.4)]'
                           : 'glass-input border border-slate-200 dark:border-white/10 hover:border-purple-500/40 hover:bg-slate-100 dark:hover:bg-white/10 opacity-70 hover:opacity-100'
-                      }`}
+                        }`}
                     >
                       <span className="leading-none select-none">{em}</span>
                     </button>

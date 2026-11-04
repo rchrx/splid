@@ -14,7 +14,7 @@ export const Footer = () => {
           <div className="md:col-span-2 space-y-3">
             <div className="flex items-center gap-2.5">
               <div className="flex items-center justify-center w-8 h-8 rounded-xl bg-purple-500/15 border border-purple-500/30 shadow-sm p-1 overflow-hidden shrink-0">
-                <img src="/logo.png" alt="Dibbl Logo" className="w-full h-full object-contain drop-shadow-sm" />
+                <img src={`${import.meta.env.BASE_URL}/logo.png`} alt="Dibbl Logo" className="w-full h-full object-contain drop-shadow-sm" />
               </div>
               <div className="flex flex-col">
                 <span className="font-extrabold text-lg tracking-tight text-slate-900 dark:text-white font-sans leading-none">
