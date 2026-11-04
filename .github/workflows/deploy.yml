@@ -4,7 +4,7 @@ name: Dibbl Deployment
 on:
   push:
     branches:
-      - prod
+      - main
 
   workflow_dispatch:
 
