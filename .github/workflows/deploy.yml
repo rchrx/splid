@@ -1,10 +1,10 @@
 
-name: Deploy React Vite Website
+name: Dibbl Deployment
 
 on:
   push:
     branches:
-      - main
+      - prod
 
   workflow_dispatch:
 
@@ -28,7 +28,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 26
           cache: npm
 
       - name: Install dependencies
