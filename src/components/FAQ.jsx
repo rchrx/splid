@@ -12,23 +12,23 @@ export const FAQ = () => {
     },
     {
       q: 'How does the bill-splitting calculator work?',
-      a: 'Dibbl divides your grand total (bill subtotal + tip + tax + any extra charges) equally across the number of guests. You can adjust the number of people using the quick +/- buttons or enter the exact head count. We also support round-up options so nobody has to deal with awkward loose coins.',
+      a: 'Splid divides your grand total (bill subtotal + tip + tax + any extra charges) equally across the number of guests. You can adjust the number of people using the quick +/- buttons or enter the exact head count. We also support round-up options so nobody has to deal with awkward loose coins.',
     },
     {
       q: 'Can I split a bill unevenly?',
-      a: 'Yes! Check out our "Multi-Person Custom Expense Split" section right below the main dashboard. You can add guests by name, enter their individual food/drink totals or percentage shares, and allocate custom tips. Dibbl automatically validates the balance so every single dollar is accounted for.',
+      a: 'Yes! Check out our "Multi-Person Custom Expense Split" section right below the main dashboard. You can add guests by name, enter their individual food/drink totals or percentage shares, and allocate custom tips. Splid automatically validates the balance so every single rupee is accounted for.',
     },
     {
       q: 'Can I calculate tips for multiple people?',
-      a: 'Absolutely. Dibbl shows both the overall tip amount and the exact tip per person. You can also view the base subtotal per person alongside the tip contribution.',
+      a: 'Absolutely. Splid shows both the overall tip amount and the exact tip per person. You can also view the base subtotal per person alongside the tip contribution.',
     },
     {
-      q: 'Does the calculator support different currencies?',
-      a: 'Yes, Dibbl includes instant support for major global currencies including USD ($), EUR (€), GBP (£), JPY (¥), CAD (CA$), AUD (A$), INR (₹), CHF, SGD, and AED. You can switch currencies anytime from the top navigation bar.',
+      q: 'What currency does the calculator use?',
+      a: 'Splid is optimized for Indian Rupees (₹ - INR) with native Indian numbering formatting (lakhs, crores, and thousands).',
     },
     {
-      q: 'Is Dibbl free to use and does it store my private data?',
-      a: 'Dibbl is 100% free with no registration required. All calculations run entirely inside your browser client. Your data is never sent to any external server, and recent calculations are saved purely in your local browser storage.',
+      q: 'Is Splid free to use and does it store my private data?',
+      a: 'Splid is 100% free with no registration required. All calculations run entirely inside your browser client. Your data is never sent to any external server, and recent calculations are saved purely in your local browser storage.',
     },
   ];
 
@@ -37,13 +37,13 @@ export const FAQ = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel border-purple-500/20 text-xs font-semibold text-purple-700 dark:text-purple-300 mb-3">
-            <HelpCircle className="w-3.5 h-3.5 text-electric-purple" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel border-teal-500/20 text-xs font-semibold text-teal-700 dark:text-teal-300 mb-3">
+            <HelpCircle className="w-3.5 h-3.5 text-teal-500 dark:text-teal-400" />
             <span>Frequently Asked Questions</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white font-sans">
             Got Questions?{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-400">
               We Have Answers.
             </span>
           </h2>
@@ -71,7 +71,7 @@ export const FAQ = () => {
                   </span>
                   <div
                     className={`w-8 h-8 rounded-xl glass-input flex items-center justify-center shrink-0 transition-transform duration-300 ${
-                      isOpen ? 'rotate-180 text-purple-400' : 'text-slate-400'
+                      isOpen ? 'rotate-180 text-teal-500' : 'text-slate-400'
                     }`}
                   >
                     <ChevronDown className="w-4 h-4" />

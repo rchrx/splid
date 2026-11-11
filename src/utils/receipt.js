@@ -6,7 +6,7 @@ import { formatCurrency } from './currency';
  */
 export const downloadReceiptPDF = ({
   calculation,
-  currency = 'USD',
+  currency = 'INR',
   title = 'Dining Bill Split',
   participants = [],
   notes = '',
@@ -31,7 +31,7 @@ export const downloadReceiptPDF = ({
   doc.setTextColor(255, 255, 255);
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(18);
-  doc.text('DIBBL', 20, 24);
+  doc.text('SPLID', 20, 24);
 
   // Subtitle
   doc.setTextColor(192, 132, 252);
@@ -139,9 +139,9 @@ export const downloadReceiptPDF = ({
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(7.5);
   doc.setTextColor(148, 163, 184);
-  doc.text('Calculated with Dibbl • 100% Mathematically Balanced & Fair', pageWidth / 2, pageHeight - 8, { align: 'center' });
+  doc.text('Calculated with Splid • 100% Mathematically Balanced & Fair', pageWidth / 2, pageHeight - 8, { align: 'center' });
 
-  doc.save(`Dibbl-Bill-${new Date().toISOString().slice(0, 10)}.pdf`);
+  doc.save(`Splid-Bill-${new Date().toISOString().slice(0, 10)}.pdf`);
 };
 
 /**
@@ -149,11 +149,11 @@ export const downloadReceiptPDF = ({
  */
 export const generateShareText = ({
   calculation,
-  currency = 'USD',
+  currency = 'INR',
   participants = [],
 }) => {
-  const symbol = formatCurrency(0, currency).replace(/[0-9.,]/g, '').trim() || '$';
-  let text = `🧾 *Dibbl Bill Breakdown*\n`;
+  const symbol = '₹';
+  let text = `🧾 *Splid Bill Breakdown*\n`;
   text += `━━━━━━━━━━━━━━━━━━━━━\n`;
   text += `💰 *Subtotal:* ${formatCurrency(calculation.subtotal, currency)}\n`;
   text += `✨ *Tip (${calculation.tipPercentage}%):* ${formatCurrency(calculation.tipAmount, currency)}\n`;
@@ -179,7 +179,7 @@ export const generateShareText = ({
     text += `\n`;
   }
 
-  text += `⚡ Split cleanly with Dibbl`;
+  text += `⚡ Split cleanly with Splid`;
   return text;
 };
 
@@ -192,7 +192,7 @@ export const shareCalculation = async (data, onCopied) => {
   if (navigator.share) {
     try {
       await navigator.share({
-        title: 'Dibbl Bill Breakdown',
+        title: 'Splid Bill Breakdown',
         text: text,
       });
       return true;

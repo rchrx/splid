@@ -40,11 +40,11 @@ export const Features = () => {
     },
     {
       icon: Globe2,
-      title: 'Multiple Currencies',
-      description: 'Support USD, EUR, GBP, JPY, CAD, AUD, INR, and more with dynamic symbols and native formatting.',
+      title: 'Indian Rupee (₹)',
+      description: 'Native INR support with regional numbering formatting, seamless settlements, and WhatsApp summaries.',
       gradient: 'from-emerald-500/20 to-teal-500/10',
       iconColor: 'text-emerald-400',
-      badge: 'Global Ready',
+      badge: 'INR Engine',
     },
     {
       icon: Split,

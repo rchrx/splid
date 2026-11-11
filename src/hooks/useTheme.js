@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 export const useTheme = () => {
   const [theme, setTheme] = useState(() => {
     try {
-      const saved = localStorage.getItem('dibbl_theme') || localStorage.getItem('splitly_theme');
+      const saved = localStorage.getItem('splid_theme') || localStorage.getItem('dibbl_theme') || localStorage.getItem('splitly_theme');
       if (saved) return saved;
       return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
     } catch {
@@ -20,7 +20,7 @@ export const useTheme = () => {
       root.classList.remove('light');
       root.classList.add('dark');
     }
-    localStorage.setItem('dibbl_theme', theme);
+    localStorage.setItem('splid_theme', theme);
   }, [theme]);
 
   const toggleTheme = () => {

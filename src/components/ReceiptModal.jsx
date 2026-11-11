@@ -80,12 +80,12 @@ export const ReceiptModal = ({
         className="relative w-full max-w-lg glass-panel-elevated bg-midnight-950/95 dark:bg-midnight-950/95 p-6 sm:p-8 rounded-3xl border border-white/15 shadow-2xl z-10 overflow-hidden"
       >
         {/* Glow corner */}
-        <div className="absolute top-0 right-0 w-40 h-40 bg-purple-600/20 blur-3xl pointer-events-none" />
+        <div className="absolute top-0 right-0 w-40 h-40 bg-teal-500/20 blur-3xl pointer-events-none" />
 
         {/* Modal Header */}
         <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-xl bg-purple-500/20 border border-purple-500/30 flex items-center justify-center text-electric-purple">
+            <div className="w-8 h-8 rounded-xl bg-teal-500/20 border border-teal-500/30 flex items-center justify-center text-teal-400">
               <Receipt className="w-4 h-4" />
             </div>
             <div>
@@ -107,12 +107,12 @@ export const ReceiptModal = ({
         <div className="bg-slate-900/90 dark:bg-midnight-900/90 rounded-2xl p-5 border border-white/10 font-mono text-xs text-slate-300 relative shadow-inner mb-6">
           {/* Top Brand Banner */}
           <div className="text-center pb-4 border-b border-dashed border-white/15">
-            <div className="text-sm font-extrabold tracking-wider text-white">DIBBL RECEIPT</div>
+            <div className="text-sm font-extrabold tracking-wider text-white">SPLID RECEIPT</div>
             <input
               type="text"
               value={receiptTitle}
               onChange={(e) => setReceiptTitle(e.target.value)}
-              className="text-center bg-transparent text-xs text-purple-300 font-semibold focus:outline-none border-b border-transparent hover:border-white/20 focus:border-purple-400 mt-1 w-full"
+              className="text-center bg-transparent text-xs text-teal-300 font-semibold focus:outline-none border-b border-transparent hover:border-white/20 focus:border-teal-400 mt-1 w-full"
               placeholder="Tap to set bill description"
             />
             <div className="text-[10px] text-slate-500 mt-1 flex items-center justify-center gap-2">
@@ -162,20 +162,20 @@ export const ReceiptModal = ({
           <div className="pt-3 pb-2 space-y-2">
             <div className="flex justify-between text-sm font-bold text-white">
               <span>TOTAL BILL</span>
-              <span className="text-base text-purple-300">{formatCurrency(calculation.finalTotal, currency)}</span>
+              <span className="text-base text-teal-300">{formatCurrency(calculation.finalTotal, currency)}</span>
             </div>
 
             {/* Per person callout inside receipt */}
-            <div className="p-3 rounded-xl bg-purple-950/40 border border-purple-500/30 flex items-center justify-between">
-              <span className="text-[11px] font-bold text-purple-200">EACH PERSON PAYS</span>
-              <span className="text-base font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-cyan-300">
+            <div className="p-3 rounded-xl bg-teal-950/40 border border-teal-500/30 flex items-center justify-between">
+              <span className="text-[11px] font-bold text-teal-200">EACH PERSON PAYS</span>
+              <span className="text-base font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-cyan-300">
                 {formatCurrency(calculation.amountPerPerson, currency)}
               </span>
             </div>
           </div>
 
           <div className="text-center text-[9px] text-slate-500 pt-3 border-t border-dashed border-white/10">
-            Powered by Dibbl • Client-Side Security Verified
+            Powered by Splid • Client-Side Security Verified
           </div>
         </div>
 
@@ -184,7 +184,7 @@ export const ReceiptModal = ({
           <button
             onClick={handleDownloadPDF}
             disabled={downloading}
-            className="w-full sm:flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-2xl text-xs font-bold text-white bg-gradient-to-r from-purple-600 via-violet-600 to-cyan-500 hover:opacity-95 shadow-glass-glow transition-all disabled:opacity-50"
+            className="w-full sm:flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-2xl text-xs font-bold text-white bg-gradient-to-r from-teal-600 via-cyan-600 to-emerald-500 hover:opacity-95 shadow-glass-glow transition-all disabled:opacity-50"
           >
             <FileDown className="w-4 h-4" />
             <span>{downloading ? 'Generating PDF...' : 'Download PDF Receipt'}</span>
@@ -192,7 +192,7 @@ export const ReceiptModal = ({
 
           <button
             onClick={handleCopySummary}
-            className="w-full sm:w-auto flex items-center justify-center gap-2 py-3 px-4 rounded-2xl text-xs font-bold glass-input text-slate-200 hover:text-white hover:border-purple-400/50 transition-colors"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 py-3 px-4 rounded-2xl text-xs font-bold glass-input text-slate-200 hover:text-white hover:border-teal-400/50 transition-colors"
           >
             {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
             <span>{copied ? 'Copied' : 'Copy Text'}</span>

@@ -76,7 +76,7 @@ export const Calculator = ({
   };
 
   const handleCopy = async () => {
-    const text = `Dibbl Bill Summary: Total ${formatCurrency(calculation.finalTotal, currency)} split across ${calculation.numberOfPeople} people = ${formatCurrency(calculation.amountPerPerson, currency)}/person (Subtotal: ${formatCurrency(calculation.subtotal, currency)}, Tip: ${formatCurrency(calculation.tipAmount, currency)} @ ${calculation.tipPercentage}%).`;
+    const text = `Splid Bill Summary: Total ${formatCurrency(calculation.finalTotal, currency)} split across ${calculation.numberOfPeople} people = ${formatCurrency(calculation.amountPerPerson, currency)}/person (Subtotal: ${formatCurrency(calculation.subtotal, currency)}, Tip: ${formatCurrency(calculation.tipAmount, currency)} @ ${calculation.tipPercentage}%).`;
     await copyToClipboard(text);
     setCopied(true);
     triggerConfetti();
@@ -118,13 +118,13 @@ export const Calculator = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel border-purple-500/20 text-xs font-semibold text-purple-700 dark:text-purple-300 mb-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel border-teal-500/20 text-xs font-semibold text-teal-700 dark:text-teal-300 mb-3">
             <Sliders className="w-3.5 h-3.5 text-cyan-400" />
             <span>Interactive Split Dashboard</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white font-sans">
             Precision Calculation.{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-400">
               Zero Confusion.
             </span>
           </h2>
@@ -138,13 +138,13 @@ export const Calculator = ({
           {/* LEFT PANEL: Bill Details */}
           <div className="lg:col-span-7 glass-panel-elevated p-6 sm:p-8 rounded-3xl border border-white/10 dark:border-white/10 relative overflow-hidden">
             {/* Ambient accent glow in card background */}
-            <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-purple-500/10 blur-[80px] rounded-full pointer-events-none" />
+            <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-teal-500/10 blur-[80px] rounded-full pointer-events-none" />
 
             {/* Bill Amount Section */}
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <label className="text-xs font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 font-bold flex items-center gap-1.5">
-                  <DollarSign className="w-4 h-4 text-electric-purple" />
+                  <DollarSign className="w-4 h-4 text-teal-500" />
                   <span>Bill Amount</span>
                 </label>
                 <span className="text-xs text-slate-500 font-mono">
@@ -154,7 +154,7 @@ export const Calculator = ({
 
               {/* Large Input with currency badge */}
               <div className="relative flex items-center">
-                <div className="absolute left-4 text-2xl font-bold text-purple-600 dark:text-purple-400 font-mono select-none">
+                <div className="absolute left-4 text-2xl font-bold text-teal-600 dark:text-teal-400 font-mono select-none">
                   {currencyConfig.symbol}
                 </div>
                 <input
@@ -183,7 +183,7 @@ export const Calculator = ({
                   <button
                     key={preset}
                     onClick={() => setBillAmount(preset.toFixed(2))}
-                    className="px-2.5 py-1 rounded-lg glass-input text-slate-700 dark:text-slate-300 hover:text-purple-400 hover:border-purple-500/30 text-xs font-mono transition-colors shrink-0"
+                    className="px-2.5 py-1 rounded-lg glass-input text-slate-700 dark:text-slate-300 hover:text-teal-400 hover:border-teal-500/30 text-xs font-mono transition-colors shrink-0"
                   >
                     {currencyConfig.symbol}{preset}
                   </button>
@@ -219,8 +219,8 @@ export const Calculator = ({
                       }}
                       className={`py-2.5 px-3 rounded-xl text-sm font-bold font-mono transition-all duration-200 ${
                         isActive
-                          ? 'bg-gradient-to-r from-purple-600 to-cyan-600 text-white shadow-neon-purple scale-[1.03]'
-                          : 'glass-input text-slate-700 dark:text-slate-200 hover:border-purple-500/40 hover:bg-white/10'
+                          ? 'bg-gradient-to-r from-teal-600 to-cyan-600 text-white shadow-neu-glow-teal scale-[1.03]'
+                          : 'glass-input text-slate-700 dark:text-slate-200 hover:border-teal-500/40 hover:bg-white/10'
                       }`}
                     >
                       {pct}%
@@ -281,7 +281,7 @@ export const Calculator = ({
                 <button
                   onClick={() => setNumberOfPeople(Math.max(1, Number(numberOfPeople) - 1))}
                   disabled={Number(numberOfPeople) <= 1}
-                  className="w-12 h-12 rounded-2xl glass-input flex items-center justify-center text-slate-700 dark:text-slate-200 hover:text-white hover:border-purple-500/40 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                  className="w-12 h-12 rounded-2xl glass-input flex items-center justify-center text-slate-700 dark:text-slate-200 hover:text-white hover:border-teal-500/40 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
                   aria-label="Decrease people"
                 >
                   <Minus className="w-5 h-5" />
@@ -306,7 +306,7 @@ export const Calculator = ({
 
                 <button
                   onClick={() => setNumberOfPeople(Math.min(100, Number(numberOfPeople) + 1))}
-                  className="w-12 h-12 rounded-2xl glass-input flex items-center justify-center text-slate-700 dark:text-slate-200 hover:text-white hover:border-purple-500/40 transition-colors"
+                  className="w-12 h-12 rounded-2xl glass-input flex items-center justify-center text-slate-700 dark:text-slate-200 hover:text-white hover:border-teal-500/40 transition-colors"
                   aria-label="Increase people"
                 >
                   <Plus className="w-5 h-5" />
@@ -318,7 +318,7 @@ export const Calculator = ({
                 {Array.from({ length: Math.min(10, Number(numberOfPeople)) }).map((_, i) => (
                   <div
                     key={i}
-                    className="w-8 h-8 rounded-full bg-gradient-to-tr from-purple-600 to-cyan-500 flex items-center justify-center text-white text-[11px] font-bold shadow-sm ring-2 ring-midnight-950 shrink-0"
+                    className="w-8 h-8 rounded-full bg-gradient-to-tr from-teal-600 to-cyan-500 flex items-center justify-center text-white text-[11px] font-bold shadow-sm ring-2 ring-midnight-950 shrink-0"
                     title={`Guest ${i + 1}`}
                   >
                     P{i + 1}
@@ -336,10 +336,10 @@ export const Calculator = ({
             <div className="mt-8 pt-6 border-t border-white/5 dark:border-white/5 border-slate-200/50">
               <button
                 onClick={() => setShowAdvancedOptions(!showAdvancedOptions)}
-                className="w-full flex items-center justify-between text-xs font-mono uppercase tracking-wider text-slate-600 dark:text-slate-300 font-bold hover:text-purple-400 transition-colors"
+                className="w-full flex items-center justify-between text-xs font-mono uppercase tracking-wider text-slate-600 dark:text-slate-300 font-bold hover:text-teal-400 transition-colors"
               >
                 <span className="flex items-center gap-2">
-                  <Layers className="w-4 h-4 text-purple-400" />
+                  <Layers className="w-4 h-4 text-teal-400" />
                   <span>Advanced Options (Tax, Extra Charges, Round-Up)</span>
                 </span>
                 {showAdvancedOptions ? (
@@ -366,7 +366,7 @@ export const Calculator = ({
                           id="taxCheckbox"
                           checked={includeTax}
                           onChange={(e) => setIncludeTax(e.target.checked)}
-                          className="w-4 h-4 accent-purple-600 rounded cursor-pointer"
+                          className="w-4 h-4 accent-teal-600 rounded cursor-pointer"
                         />
                         <label htmlFor="taxCheckbox" className="text-xs font-medium text-slate-700 dark:text-slate-200 cursor-pointer">
                           Include Tax / VAT in bill
@@ -427,7 +427,7 @@ export const Calculator = ({
                             onClick={() => setRoundUpOption(opt.id)}
                             className={`py-2 px-2 rounded-xl text-[11px] font-semibold transition-all ${
                               roundUpOption === opt.id
-                                ? 'bg-purple-600/30 border border-purple-500/50 text-purple-300 font-bold'
+                                ? 'bg-teal-600/30 border border-teal-500/50 text-teal-300 font-bold'
                                 : 'glass-input text-slate-600 dark:text-slate-300 hover:bg-white/10'
                             }`}
                           >
@@ -444,9 +444,9 @@ export const Calculator = ({
 
           {/* RIGHT PANEL: Calculation Results Card */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="glass-panel-elevated p-6 sm:p-8 rounded-3xl border border-purple-500/30 relative overflow-hidden shadow-glass-glow">
+            <div className="glass-panel-elevated p-6 sm:p-8 rounded-3xl border border-teal-500/30 relative overflow-hidden shadow-glass-glow">
               {/* Radial gradient backing */}
-              <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-purple-600/20 to-cyan-500/20 blur-3xl pointer-events-none" />
+              <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-teal-600/20 to-cyan-500/20 blur-3xl pointer-events-none" />
 
               {/* Card Header */}
               <div className="flex items-center justify-between pb-4 border-b border-white/10 dark:border-white/10 border-slate-200/50">
@@ -456,19 +456,19 @@ export const Calculator = ({
                     Calculation Results
                   </span>
                 </div>
-                <div className="px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] font-mono text-purple-300">
+                <div className="px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] font-mono text-teal-300">
                   {calculation.numberOfPeople} {calculation.numberOfPeople === 1 ? 'Guest' : 'Guests'}
                 </div>
               </div>
 
               {/* HERO HIGHLIGHT: Amount Per Person */}
-              <div className="my-6 p-5 rounded-2xl bg-gradient-to-br from-purple-900/40 via-midnight-900/80 to-midnight-950/80 border border-purple-500/30 text-center relative group">
-                <span className="text-xs font-mono uppercase tracking-wider text-purple-300 font-semibold block mb-1">
+              <div className="my-6 p-5 rounded-2xl bg-gradient-to-br from-teal-900/40 via-midnight-900/80 to-midnight-950/80 border border-teal-500/30 text-center relative group">
+                <span className="text-xs font-mono uppercase tracking-wider text-teal-300 font-semibold block mb-1">
                   Amount Per Person
                 </span>
                 <div className="text-4xl sm:text-5xl font-black tracking-tight text-white font-mono flex items-center justify-center gap-1">
-                  <span className="text-2xl sm:text-3xl text-purple-400 font-bold">{currencyConfig.symbol}</span>
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-white to-cyan-300">
+                  <span className="text-2xl sm:text-3xl text-teal-400 font-bold">{currencyConfig.symbol}</span>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-300 via-white to-cyan-300">
                     {calculation.amountPerPerson.toFixed(currencyConfig.decimals ?? 2)}
                   </span>
                 </div>
@@ -522,7 +522,7 @@ export const Calculator = ({
 
                 <div className="pt-3 border-t border-white/10 dark:border-white/10 flex items-center justify-between text-sm sm:text-base font-bold text-slate-900 dark:text-white">
                   <span>Grand Total</span>
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400 text-lg">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-400 text-lg">
                     {formatCurrency(calculation.finalTotal, currency)}
                   </span>
                 </div>
@@ -533,7 +533,7 @@ export const Calculator = ({
                 <div className="mt-5 pt-4 border-t border-white/5 dark:border-white/5">
                   <div className="text-[11px] font-mono text-slate-400 uppercase tracking-wider mb-2 flex items-center justify-between">
                     <span>Expense Distribution</span>
-                    <span className="text-[10px] text-purple-300">Interactive</span>
+                    <span className="text-[10px] text-teal-300">Interactive</span>
                   </div>
                   <div className="h-28 w-full flex items-center">
                     <ResponsiveContainer width="50%" height="100%">
@@ -584,9 +584,9 @@ export const Calculator = ({
                 <div className="grid grid-cols-2 gap-2">
                   <button
                     onClick={handleCopy}
-                    className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl glass-input text-xs font-semibold text-slate-700 dark:text-slate-200 hover:text-white hover:border-purple-500/50 transition-all hover:bg-white/10"
+                    className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl glass-input text-xs font-semibold text-slate-700 dark:text-slate-200 hover:text-white hover:border-teal-500/50 transition-all hover:bg-white/10"
                   >
-                    {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4 text-purple-400" />}
+                    {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4 text-teal-400" />}
                     <span>{copied ? 'Copied!' : 'Copy Results'}</span>
                   </button>
 
@@ -602,7 +602,7 @@ export const Calculator = ({
                 <div className="grid grid-cols-3 gap-2">
                   <button
                     onClick={handleSave}
-                    className="flex items-center justify-center gap-1.5 py-2 px-2 rounded-xl glass-input text-[11px] font-semibold text-slate-600 dark:text-slate-300 hover:text-purple-300 hover:bg-white/10 transition-colors"
+                    className="flex items-center justify-center gap-1.5 py-2 px-2 rounded-xl glass-input text-[11px] font-semibold text-slate-600 dark:text-slate-300 hover:text-teal-300 hover:bg-white/10 transition-colors"
                     title="Save calculation to history"
                   >
                     <BookmarkPlus className="w-3.5 h-3.5" />

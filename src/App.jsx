@@ -76,7 +76,7 @@ export function App() {
     const grp = splitState.activeGroup;
     if (!grp) return;
 
-    let text = `🧾 *Dibbl Group Summary: ${grp.name}*\n`;
+    let text = `🧾 *Splid Group Summary: ${grp.name}*\n`;
     text += `━━━━━━━━━━━━━━━━━━━━━\n`;
     text += `💰 *Total Group Spending:* ${formatCurrency(splitState.totalSpending, splitState.currency)}\n`;
     text += `👥 *Members:* ${grp.members.map((m) => m.name).join(', ')}\n\n`;
@@ -102,7 +102,7 @@ export function App() {
       }
     });
 
-    text += `\n🚀 Calculated smoothly with Dibbl`;
+    text += `\n🚀 Calculated smoothly with Splid`;
 
     await copyToClipboard(text);
     addToast('Group summary copied to clipboard for WhatsApp!', 'success');
@@ -111,20 +111,18 @@ export function App() {
   const hasGroups = splitState.groups.length > 0 && splitState.activeGroup;
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-midnight-950 text-slate-800 dark:text-slate-100 selection:bg-purple-500/30 selection:text-purple-300 relative transition-colors duration-300">
-      {/* Dynamic ambient background blobs */}
+    <div className="min-h-screen bg-[#ebf0f6] dark:bg-[#272f40] text-slate-800 dark:text-slate-100 selection:bg-teal-500/25 selection:text-teal-700 dark:selection:text-teal-300 relative transition-colors duration-300">
+      {/* Directional ambient lighting matching Splid logo palette */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none -z-10">
-        <div className="absolute -top-40 -left-40 w-96 h-96 bg-purple-600/10 dark:bg-purple-600/15 blur-[120px] rounded-full animate-blob" />
-        <div className="absolute top-1/3 -right-40 w-96 h-96 bg-cyan-600/10 dark:bg-cyan-600/15 blur-[120px] rounded-full animate-blob [animation-delay:3s]" />
-        <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-indigo-600/10 dark:bg-indigo-600/10 blur-[130px] rounded-full animate-blob [animation-delay:6s]" />
+        <div className="absolute -top-32 -left-32 w-96 h-96 bg-teal-500/10 dark:bg-teal-500/15 blur-[130px] rounded-full" />
+        <div className="absolute top-1/3 -right-32 w-96 h-96 bg-cyan-400/10 dark:bg-cyan-500/15 blur-[130px] rounded-full" />
+        <div className="absolute -bottom-32 left-1/3 w-96 h-96 bg-[#f07864]/10 dark:bg-[#f07864]/15 blur-[140px] rounded-full" />
       </div>
 
-      {/* Floating Glass Navigation */}
+      {/* Floating Neumorphic Navigation */}
       <Navbar
         theme={theme}
         toggleTheme={toggleTheme}
-        currency={splitState.currency}
-        onCurrencyChange={splitState.setCurrency}
         groups={splitState.groups}
         activeGroupId={splitState.activeGroupId}
         onSelectGroup={splitState.selectGroup}
@@ -191,8 +189,6 @@ export function App() {
               splitState.createGroup(groupData);
               addToast(`Group "${groupData.name}" created!`, 'success');
             }}
-            currency={splitState.currency}
-            onCurrencyChange={splitState.setCurrency}
           />
         )}
       </main>

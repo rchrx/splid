@@ -1,6 +1,6 @@
-# Dibbl — Split Smart. Pay Fair
+# Splid — Split Smart. Pay Fair
 
-A premier glassmorphism group expense tracker and smart debt settlement platform. Split smart, pay fair, and settle up with zero math friction.
+A premier neomorphism group expense tracker and smart debt settlement platform. Split smart, pay fair, and settle up with zero math friction.
 
 ---
 
