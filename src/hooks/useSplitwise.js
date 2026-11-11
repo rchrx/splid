@@ -1,17 +1,17 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { calculateMemberBalances, simplifyDebts, roundToTwo } from '../utils/debtSimplification';
 
-const STORAGE_KEY_GROUPS = 'dibbl_custom_groups_v1';
-const STORAGE_KEY_ACTIVE = 'dibbl_active_group_v1';
-const STORAGE_KEY_CURRENCY = 'dibbl_global_currency_v1';
+const STORAGE_KEY_GROUPS = 'splid_custom_groups_v1';
+const STORAGE_KEY_ACTIVE = 'splid_active_group_v1';
+const STORAGE_KEY_CURRENCY = 'splid_global_currency_v1';
 
 const AVATAR_COLORS = [
-  'from-purple-500 to-indigo-600',
+  'from-teal-500 to-cyan-600',
   'from-cyan-500 to-blue-600',
-  'from-pink-500 to-rose-600',
+  'from-[#f07864] to-rose-600',
   'from-emerald-500 to-teal-600',
   'from-amber-500 to-orange-600',
-  'from-violet-500 to-fuchsia-600',
+  'from-teal-600 to-emerald-600',
   'from-rose-500 to-red-600',
   'from-sky-500 to-indigo-500',
 ];
@@ -20,7 +20,7 @@ export const useSplitwise = () => {
   // Load groups from localStorage, default is empty array
   const [groups, setGroups] = useState(() => {
     try {
-      const saved = localStorage.getItem(STORAGE_KEY_GROUPS);
+      const saved = localStorage.getItem(STORAGE_KEY_GROUPS) || localStorage.getItem('dibbl_custom_groups_v1');
       if (saved) {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed)) return parsed;
@@ -37,9 +37,7 @@ export const useSplitwise = () => {
     return groups[0]?.id || null;
   });
 
-  const [currency, setCurrency] = useState(() => {
-    return localStorage.getItem(STORAGE_KEY_CURRENCY) || 'USD';
-  });
+  const [currency, setCurrency] = useState('INR');
 
   // Save to localStorage
   useEffect(() => {
@@ -257,7 +255,7 @@ export const useSplitwise = () => {
       toMemberId,
       amount: parseFloat(amount) || 0,
       date: date || new Date().toISOString().slice(0, 10),
-      note: note || 'Settled via Dibbl',
+      note: note || 'Settled via Splid',
     };
 
     setGroups((prev) =>

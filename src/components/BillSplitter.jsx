@@ -22,12 +22,12 @@ import { formatCurrency, getCurrencyConfig } from '../utils/currency';
 import { copyToClipboard } from '../utils/receipt';
 
 const AVATAR_COLORS = [
-  'from-purple-500 to-indigo-600',
+  'from-teal-500 to-cyan-600',
   'from-cyan-500 to-blue-600',
-  'from-pink-500 to-rose-600',
+  'from-[#f07864] to-rose-600',
   'from-amber-500 to-orange-600',
   'from-emerald-500 to-teal-600',
-  'from-violet-500 to-fuchsia-600',
+  'from-sky-500 to-indigo-600',
 ];
 
 export const BillSplitter = ({
@@ -109,7 +109,7 @@ export const BillSplitter = ({
   };
 
   const handleCopyPersonShare = async (person) => {
-    const text = `Hey ${person.name}! Your share for the bill is ${formatCurrency(person.totalPayable, currency)} (Food: ${formatCurrency(person.subtotal, currency)} + Tip: ${formatCurrency(person.tipAmount, currency)} @ ${person.tipPercentage}%). Settled via Dibbl.`;
+    const text = `Hey ${person.name}! Your share for the bill is ${formatCurrency(person.totalPayable, currency)} (Food: ${formatCurrency(person.subtotal, currency)} + Tip: ${formatCurrency(person.tipAmount, currency)} @ ${person.tipPercentage}%). Settled via Splid.`;
     await copyToClipboard(text);
     setCopiedId(person.id);
     try {
@@ -130,7 +130,7 @@ export const BillSplitter = ({
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white font-sans">
             Unequal & Itemized Splits.{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-400">
               Fair to Every Cent.
             </span>
           </h2>
@@ -147,7 +147,7 @@ export const BillSplitter = ({
               onClick={() => setSplitMode('exact')}
               className={`flex-1 md:flex-initial flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
                 splitMode === 'exact'
-                  ? 'bg-purple-600 text-white shadow-neon-purple'
+                  ? 'bg-teal-600 text-white shadow-neu-glow-teal'
                   : 'text-slate-600 dark:text-slate-400 hover:text-white'
               }`}
             >
@@ -171,7 +171,7 @@ export const BillSplitter = ({
               onClick={() => setSplitMode('equal')}
               className={`flex-1 md:flex-initial flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
                 splitMode === 'equal'
-                  ? 'bg-violet-600 text-white'
+                  ? 'bg-emerald-600 text-white'
                   : 'text-slate-600 dark:text-slate-400 hover:text-white'
               }`}
             >
@@ -184,16 +184,16 @@ export const BillSplitter = ({
           <div className="flex items-center gap-3 w-full md:w-auto justify-end">
             <button
               onClick={distributeEvenly}
-              className="flex items-center gap-1.5 px-3 py-2 rounded-xl glass-input text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-white hover:border-purple-400 transition-colors"
+              className="flex items-center gap-1.5 px-3 py-2 rounded-xl glass-input text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-white hover:border-teal-400 transition-colors"
               title="Equally distribute the target bill"
             >
-              <Shuffle className="w-3.5 h-3.5 text-purple-400" />
+              <Shuffle className="w-3.5 h-3.5 text-teal-400" />
               <span>Auto-Balance</span>
             </button>
 
             <button
               onClick={addParticipant}
-              className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-purple-600 to-cyan-500 text-white text-xs font-bold shadow-glass-glow hover:opacity-95 transition-all hover:scale-105"
+              className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-teal-600 to-cyan-500 text-white text-xs font-bold shadow-glass-glow hover:opacity-95 transition-all hover:scale-105"
             >
               <UserPlus className="w-3.5 h-3.5" />
               <span>Add Guest</span>
@@ -280,7 +280,7 @@ export const BillSplitter = ({
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.2 }}
-                className="glass-panel-elevated p-6 rounded-3xl border border-white/10 dark:border-white/10 relative overflow-hidden group hover:border-purple-500/40 transition-all shadow-glass"
+                className="glass-panel-elevated p-6 rounded-3xl border border-white/10 dark:border-white/10 relative overflow-hidden group hover:border-teal-500/40 transition-all shadow-glass"
               >
                 {/* Top Row: Avatar, Name, Delete */}
                 <div className="flex items-center justify-between gap-3 mb-4">
@@ -294,7 +294,7 @@ export const BillSplitter = ({
                         value={person.name}
                         onChange={(e) => updateParticipant(person.id, 'name', e.target.value)}
                         placeholder="Guest Name"
-                        className="bg-transparent font-bold text-base text-slate-900 dark:text-white focus:outline-none border-b border-transparent hover:border-white/20 focus:border-purple-400 px-1 py-0.5 rounded transition-colors w-32 sm:w-36"
+                        className="bg-transparent font-bold text-base text-slate-900 dark:text-white focus:outline-none border-b border-transparent hover:border-white/20 focus:border-teal-400 px-1 py-0.5 rounded transition-colors w-32 sm:w-36"
                       />
                       <div className="text-[10px] font-mono text-slate-400">Guest #{idx + 1}</div>
                     </div>
@@ -379,7 +379,7 @@ export const BillSplitter = ({
                       Tip: {formatCurrency(person.tipAmount, currency)}
                     </span>
                   </div>
-                  <div className="text-2xl font-black font-mono text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">
+                  <div className="text-2xl font-black font-mono text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-400">
                     {formatCurrency(person.totalPayable, currency)}
                   </div>
                   <div className="text-[10px] font-mono text-slate-500 mt-1">
@@ -390,7 +390,7 @@ export const BillSplitter = ({
                 {/* Copy share button */}
                 <button
                   onClick={() => handleCopyPersonShare(person)}
-                  className="w-full flex items-center justify-center gap-2 py-2 px-3 rounded-xl glass-input text-xs font-semibold text-slate-700 dark:text-slate-200 hover:text-white hover:border-purple-500/40 hover:bg-white/10 transition-colors"
+                  className="w-full flex items-center justify-center gap-2 py-2 px-3 rounded-xl glass-input text-xs font-semibold text-slate-700 dark:text-slate-200 hover:text-white hover:border-teal-500/40 hover:bg-white/10 transition-colors"
                 >
                   {copiedId === person.id ? (
                     <>
@@ -399,7 +399,7 @@ export const BillSplitter = ({
                     </>
                   ) : (
                     <>
-                      <Copy className="w-3.5 h-3.5 text-purple-400" />
+                      <Copy className="w-3.5 h-3.5 text-teal-400" />
                       <span>Copy Request for {person.name}</span>
                     </>
                   )}

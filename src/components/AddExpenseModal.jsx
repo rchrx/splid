@@ -2,12 +2,9 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
   X, 
-  DollarSign, 
   Receipt, 
   AlertCircle,
   Check,
-  Calendar,
-  Sparkles,
   Plus
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
@@ -18,7 +15,7 @@ export const AddExpenseModal = ({
   isOpen,
   onClose,
   members = [],
-  currency = 'USD',
+  currency = 'INR',
   onAddExpense,
   onNotify,
 }) => {
@@ -116,21 +113,21 @@ export const AddExpenseModal = ({
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         onClick={onClose}
-        className="fixed inset-0 bg-black/70 backdrop-blur-md transition-opacity"
+        className="fixed inset-0 bg-slate-900/60 dark:bg-black/75 backdrop-blur-sm transition-opacity"
       />
 
-      {/* Modal Dialog */}
+      {/* Neumorphic Modal Dialog */}
       <motion.div
         initial={{ opacity: 0, scale: 0.96, y: 15 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.96, y: 15 }}
-        className="relative w-full max-w-xl glass-panel-elevated bg-white dark:bg-midnight-950/95 text-slate-800 dark:text-slate-100 p-5 sm:p-7 rounded-3xl border border-slate-200 dark:border-white/15 shadow-2xl z-10 overflow-hidden max-h-[92vh] flex flex-col justify-between"
+        className="relative w-full max-w-xl neu-raised text-slate-800 dark:text-slate-100 p-5 sm:p-7 rounded-3xl z-10 overflow-hidden max-h-[92vh] flex flex-col justify-between"
       >
         <div>
           {/* Header */}
-          <div className="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-white/10 mb-5">
-            <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-2xl bg-purple-500/20 border border-purple-500/30 flex items-center justify-center text-electric-purple">
+          <div className="flex items-center justify-between pb-4 border-b border-slate-300/60 dark:border-white/5 mb-5">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-2xl neu-icon-socket flex items-center justify-center text-teal-600 dark:text-teal-400">
                 <Receipt className="w-5 h-5" />
               </div>
               <div>
@@ -138,24 +135,24 @@ export const AddExpenseModal = ({
                   Add New Expense
                 </h3>
                 <p className="text-xs text-slate-500 dark:text-slate-400">
-                  Log a bill, dinner, ride, or accommodation
+                  Log a shared bill, dinner, ride, or accommodation
                 </p>
               </div>
             </div>
 
             <button
               onClick={onClose}
-              className="p-1.5 rounded-xl glass-input text-slate-400 hover:text-slate-700 dark:hover:text-white transition-colors"
+              className="neu-btn p-2 rounded-xl text-slate-400 hover:text-slate-700 dark:hover:text-white"
               aria-label="Close modal"
             >
-              <X className="w-5 h-5" />
+              <X className="w-4 h-4" />
             </button>
           </div>
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4 overflow-y-auto max-h-[62vh] pr-1">
             {error && (
-              <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-600 dark:text-red-300 text-xs flex items-center gap-2 font-medium">
+              <div className="p-3 rounded-xl neu-sunken border-l-4 border-l-red-500 text-red-600 dark:text-red-300 text-xs flex items-center gap-2 font-medium">
                 <AlertCircle className="w-4 h-4 shrink-0 text-red-500" />
                 <span>{error}</span>
               </div>
@@ -171,10 +168,10 @@ export const AddExpenseModal = ({
                   type="text"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
-                  placeholder="e.g. Dinner, Uber, Airbnb"
+                  placeholder="e.g. Dinner, Uber, Villa"
                   required
                   autoFocus
-                  className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-sm font-semibold focus:outline-none placeholder-slate-400"
+                  className="w-full neu-input px-3.5 py-2.5 rounded-2xl text-sm font-semibold focus:outline-none placeholder-slate-400"
                 />
               </div>
 
@@ -183,7 +180,7 @@ export const AddExpenseModal = ({
                   Amount *
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-2.5 text-sm font-bold font-mono text-purple-500 dark:text-purple-400">
+                  <span className="absolute left-3.5 top-2.5 text-sm font-bold font-mono text-teal-600 dark:text-teal-400">
                     {currencyConfig.symbol}
                   </span>
                   <input
@@ -194,7 +191,7 @@ export const AddExpenseModal = ({
                     onChange={(e) => setAmount(e.target.value)}
                     placeholder="0.00"
                     required
-                    className="w-full glass-input pl-8 pr-3 py-2.5 rounded-2xl text-sm font-mono font-bold focus:outline-none"
+                    className="w-full neu-input pl-8 pr-3 py-2.5 rounded-2xl text-sm font-mono font-bold focus:outline-none"
                   />
                 </div>
               </div>
@@ -214,13 +211,13 @@ export const AddExpenseModal = ({
                       key={cat.id}
                       type="button"
                       onClick={() => setCategory(cat.id)}
-                      className={`p-2 rounded-xl text-left flex items-center gap-2 border transition-all ${
+                      className={`p-2 rounded-xl text-left flex items-center gap-2 transition-all ${
                         isSelected
-                          ? 'bg-purple-600/15 border-purple-500/60 text-purple-700 dark:text-purple-200 font-bold shadow-sm'
-                          : 'glass-input text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                          ? 'neu-btn-primary font-bold'
+                          : 'neu-btn text-slate-600 dark:text-slate-400'
                       }`}
                     >
-                      <Icon className="w-3.5 h-3.5 text-purple-500 dark:text-purple-400 shrink-0" />
+                      <Icon className="w-3.5 h-3.5 shrink-0" />
                       <span className="text-[11px] truncate">{cat.name}</span>
                     </button>
                   );
@@ -237,7 +234,7 @@ export const AddExpenseModal = ({
                 <select
                   value={paidById}
                   onChange={(e) => setPaidById(e.target.value)}
-                  className="w-full glass-input px-3 py-2.5 rounded-2xl text-xs font-bold focus:outline-none"
+                  className="w-full neu-input px-3 py-2.5 rounded-2xl text-xs font-bold focus:outline-none"
                 >
                   {members.map((m) => (
                     <option key={m.id} value={m.id}>
@@ -255,7 +252,7 @@ export const AddExpenseModal = ({
                   type="date"
                   value={date}
                   onChange={(e) => setDate(e.target.value)}
-                  className="w-full glass-input px-3 py-2.5 rounded-2xl text-xs font-mono focus:outline-none"
+                  className="w-full neu-input px-3 py-2.5 rounded-2xl text-xs font-mono focus:outline-none"
                 />
               </div>
             </div>
@@ -266,12 +263,12 @@ export const AddExpenseModal = ({
                 <label className="text-[11px] font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 font-bold">
                   Split Method
                 </label>
-                <div className="flex items-center gap-1 bg-slate-200/50 dark:bg-white/5 p-1 rounded-xl text-xs">
+                <div className="flex items-center gap-1 neu-sunken p-1 rounded-xl text-xs">
                   <button
                     type="button"
                     onClick={() => setSplitType('equal')}
-                    className={`px-2.5 py-1 rounded-lg font-bold text-[11px] transition-colors ${
-                      splitType === 'equal' ? 'bg-purple-600 text-white shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                    className={`px-3 py-1 rounded-lg font-bold text-[11px] transition-all ${
+                      splitType === 'equal' ? 'neu-btn-primary' : 'text-slate-600 dark:text-slate-400'
                     }`}
                   >
                     Equally
@@ -279,8 +276,8 @@ export const AddExpenseModal = ({
                   <button
                     type="button"
                     onClick={() => setSplitType('exact')}
-                    className={`px-2.5 py-1 rounded-lg font-bold text-[11px] transition-colors ${
-                      splitType === 'exact' ? 'bg-cyan-600 text-white shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                    className={`px-3 py-1 rounded-lg font-bold text-[11px] transition-all ${
+                      splitType === 'exact' ? 'neu-btn-primary' : 'text-slate-600 dark:text-slate-400'
                     }`}
                   >
                     Exact Amounts
@@ -288,8 +285,8 @@ export const AddExpenseModal = ({
                   <button
                     type="button"
                     onClick={() => setSplitType('percentage')}
-                    className={`px-2.5 py-1 rounded-lg font-bold text-[11px] transition-colors ${
-                      splitType === 'percentage' ? 'bg-pink-600 text-white shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                    className={`px-3 py-1 rounded-lg font-bold text-[11px] transition-all ${
+                      splitType === 'percentage' ? 'neu-btn-primary' : 'text-slate-600 dark:text-slate-400'
                     }`}
                   >
                     Percentage
@@ -308,21 +305,21 @@ export const AddExpenseModal = ({
                           key={m.id}
                           type="button"
                           onClick={() => toggleMemberSelection(m.id)}
-                          className={`p-2.5 rounded-xl border flex items-center justify-between text-xs transition-all ${
+                          className={`p-2.5 rounded-xl flex items-center justify-between text-xs transition-all ${
                             isIncluded
-                              ? 'bg-purple-500/15 border-purple-500/40 text-purple-700 dark:text-purple-200 font-bold'
-                              : 'glass-input text-slate-400 border-slate-200 dark:border-white/5 opacity-50'
+                              ? 'neu-btn-primary font-bold'
+                              : 'neu-sunken text-slate-400 opacity-60'
                           }`}
                         >
                           <span className="truncate">{m.name}</span>
-                          {isIncluded && <Check className="w-3.5 h-3.5 text-purple-500 dark:text-purple-400 shrink-0" />}
+                          {isIncluded && <Check className="w-3.5 h-3.5 shrink-0" />}
                         </button>
                       );
                     })}
                   </div>
 
                   {numAmount > 0 && selectedMemberIds.length > 0 && (
-                    <div className="p-2.5 rounded-xl bg-purple-500/10 border border-purple-500/20 text-xs font-mono text-purple-700 dark:text-purple-300 text-center">
+                    <div className="neu-sunken p-2.5 rounded-xl text-xs font-mono text-teal-600 dark:text-teal-300 text-center">
                       Each person pays: <strong>{formatCurrency(perPersonAmount, currency)}</strong> ({selectedMemberIds.length} {selectedMemberIds.length === 1 ? 'person' : 'people'})
                     </div>
                   )}
@@ -340,7 +337,7 @@ export const AddExpenseModal = ({
                   </div>
 
                   {members.map((m) => (
-                    <div key={m.id} className="flex items-center justify-between gap-3 p-2 rounded-xl glass-panel text-xs">
+                    <div key={m.id} className="flex items-center justify-between gap-3 p-2.5 rounded-xl neu-sunken text-xs">
                       <span className="font-semibold text-slate-800 dark:text-slate-200">{m.name}</span>
                       <div className="relative w-32">
                         <span className="absolute left-2.5 top-1.5 text-xs font-mono text-slate-400">{currencyConfig.symbol}</span>
@@ -350,7 +347,7 @@ export const AddExpenseModal = ({
                           placeholder="0.00"
                           value={exactSplits[m.id] || ''}
                           onChange={(e) => setExactSplits({ ...exactSplits, [m.id]: e.target.value })}
-                          className="w-full glass-input pl-7 pr-2 py-1 rounded-lg text-right font-mono text-xs font-bold"
+                          className="w-full neu-input pl-7 pr-2 py-1 rounded-lg text-right font-mono text-xs font-bold"
                         />
                       </div>
                     </div>
@@ -369,7 +366,7 @@ export const AddExpenseModal = ({
                   </div>
 
                   {members.map((m) => (
-                    <div key={m.id} className="flex items-center justify-between gap-3 p-2 rounded-xl glass-panel text-xs">
+                    <div key={m.id} className="flex items-center justify-between gap-3 p-2.5 rounded-xl neu-sunken text-xs">
                       <span className="font-semibold text-slate-800 dark:text-slate-200">{m.name}</span>
                       <div className="relative w-28">
                         <input
@@ -378,7 +375,7 @@ export const AddExpenseModal = ({
                           placeholder="0"
                           value={pctSplits[m.id] || ''}
                           onChange={(e) => setPctSplits({ ...pctSplits, [m.id]: e.target.value })}
-                          className="w-full glass-input pr-6 pl-2 py-1 rounded-lg text-right font-mono text-xs font-bold"
+                          className="w-full neu-input pr-6 pl-2 py-1 rounded-lg text-right font-mono text-xs font-bold"
                         />
                         <span className="absolute right-2 top-1.5 text-xs font-mono text-slate-400">%</span>
                       </div>
@@ -398,23 +395,23 @@ export const AddExpenseModal = ({
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
                 placeholder="e.g. includes tip, receipt saved"
-                className="w-full glass-input px-3.5 py-2 rounded-xl text-xs placeholder-slate-400 focus:outline-none"
+                className="w-full neu-input px-3.5 py-2 rounded-xl text-xs placeholder-slate-400 focus:outline-none"
               />
             </div>
 
             {/* Submit Action */}
-            <div className="pt-4 border-t border-slate-200 dark:border-white/10 flex items-center justify-end gap-3">
+            <div className="pt-4 border-t border-slate-300/60 dark:border-white/5 flex items-center justify-end gap-3">
               <button
                 type="button"
                 onClick={onClose}
-                className="px-4 py-2.5 rounded-xl glass-input text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"
+                className="neu-btn px-4 py-2.5 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-300"
               >
                 Cancel
               </button>
 
               <button
                 type="submit"
-                className="flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-purple-600 to-cyan-500 hover:opacity-95 shadow-glass-glow transition-all"
+                className="neu-btn-primary flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs font-bold"
               >
                 <Plus className="w-4 h-4" />
                 <span>Save Expense</span>

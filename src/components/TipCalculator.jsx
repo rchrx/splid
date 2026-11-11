@@ -29,7 +29,7 @@ export const TipCalculator = ({ currency = 'USD', onNotify }) => {
     { id: 'poor', label: 'Poor', rate: 10, icon: Frown, desc: 'Below expectations', color: 'from-amber-600 to-rose-600', ring: 'hover:border-rose-400' },
     { id: 'average', label: 'Average', rate: 15, icon: Meh, desc: 'Met basic expectations', color: 'from-amber-500 to-yellow-500', ring: 'hover:border-amber-400' },
     { id: 'good', label: 'Good', rate: 18, icon: Smile, desc: 'Great service & polite', color: 'from-cyan-500 to-blue-500', ring: 'hover:border-cyan-400' },
-    { id: 'excellent', label: 'Excellent', rate: 20, icon: SmilePlus, desc: 'Attentive, swift, exceptional', color: 'from-purple-500 to-violet-600', ring: 'hover:border-purple-400' },
+    { id: 'excellent', label: 'Excellent', rate: 20, icon: SmilePlus, desc: 'Attentive, swift, exceptional', color: 'from-teal-500 to-emerald-600', ring: 'hover:border-teal-400' },
     { id: 'outstanding', label: 'VIP / Superb', rate: 25, icon: Flame, desc: 'Unmatched 5-star experience', color: 'from-pink-500 to-rose-500', ring: 'hover:border-pink-400' },
   ];
 
@@ -56,23 +56,23 @@ export const TipCalculator = ({ currency = 'USD', onNotify }) => {
   return (
     <section id="tip-calculator" className="py-16 md:py-24 relative overflow-hidden">
       {/* Background glow orb */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[350px] bg-gradient-to-r from-purple-700/10 via-pink-700/10 to-cyan-700/10 blur-[120px] rounded-full pointer-events-none -z-10" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[350px] bg-gradient-to-r from-teal-700/10 via-cyan-700/10 to-emerald-700/10 blur-[120px] rounded-full pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel border-purple-500/20 text-xs font-semibold text-purple-700 dark:text-purple-300 mb-3">
-            <SlidersHorizontal className="w-3.5 h-3.5 text-electric-purple" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel border-teal-500/20 text-xs font-semibold text-teal-700 dark:text-teal-300 mb-3">
+            <SlidersHorizontal className="w-3.5 h-3.5 text-teal-500" />
             <span>Dedicated Service Experience Mode</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white font-sans">
             Reward Exceptional Service.{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-400">
               Without the Guesswork.
             </span>
           </h2>
           <p className="mt-3 text-slate-600 dark:text-slate-400 text-sm sm:text-base">
-            Select your service satisfaction level and let Dibbl calculate the ideal gratuity with instant visual feedback.
+            Select your service satisfaction level and let Splid calculate the ideal gratuity with instant visual feedback.
           </p>
         </div>
 
@@ -119,7 +119,7 @@ export const TipCalculator = ({ currency = 'USD', onNotify }) => {
                 Bill Subtotal
               </label>
               <div className="relative">
-                <span className="absolute left-4 top-3 text-lg font-bold font-mono text-purple-400">
+                <span className="absolute left-4 top-3 text-lg font-bold font-mono text-teal-400">
                   {currencyConfig.symbol}
                 </span>
                 <input
@@ -140,7 +140,7 @@ export const TipCalculator = ({ currency = 'USD', onNotify }) => {
                 <label className="text-xs font-mono uppercase tracking-wider text-slate-400 font-bold">
                   Custom Gratuity Slider
                 </label>
-                <span className="font-mono text-sm font-bold text-electric-purple">{tipRate}%</span>
+                <span className="font-mono text-sm font-bold text-teal-500 dark:text-teal-400">{tipRate}%</span>
               </div>
               <div className="pt-2">
                 <input
@@ -167,7 +167,7 @@ export const TipCalculator = ({ currency = 'USD', onNotify }) => {
           </div>
 
           {/* Result Highlight Card */}
-          <div className="p-6 rounded-3xl bg-gradient-to-br from-purple-900/30 via-slate-900/50 to-midnight-950/70 border border-purple-500/30">
+          <div className="p-6 rounded-3xl bg-gradient-to-br from-teal-900/30 via-slate-900/50 to-midnight-950/70 border border-teal-500/30">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
               <div>
                 <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400 block mb-1">
@@ -182,10 +182,10 @@ export const TipCalculator = ({ currency = 'USD', onNotify }) => {
               </div>
 
               <div className="border-y sm:border-y-0 sm:border-x border-white/10 dark:border-white/10 py-4 sm:py-0">
-                <span className="text-[11px] font-mono uppercase tracking-wider text-purple-300 font-semibold block mb-1">
+                <span className="text-[11px] font-mono uppercase tracking-wider text-teal-300 font-semibold block mb-1">
                   Total With Tip
                 </span>
-                <div className="text-3xl sm:text-4xl font-black font-mono text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-white to-cyan-300">
+                <div className="text-3xl sm:text-4xl font-black font-mono text-transparent bg-clip-text bg-gradient-to-r from-teal-300 via-white to-cyan-300">
                   {formatCurrency(grandTotal, currency)}
                 </div>
                 <div className="text-[11px] font-mono text-slate-400 mt-1">
@@ -197,7 +197,7 @@ export const TipCalculator = ({ currency = 'USD', onNotify }) => {
                 <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400 block mb-1">
                   Amount Per Person ({splitWays} {splitWays === 1 ? 'way' : 'ways'})
                 </span>
-                <div className="text-2xl sm:text-3xl font-black font-mono text-electric-pink">
+                <div className="text-2xl sm:text-3xl font-black font-mono text-[#f07864]">
                   {formatCurrency(perPerson, currency)}
                 </div>
                 <div className="flex items-center justify-center gap-2 mt-2">
@@ -222,9 +222,9 @@ export const TipCalculator = ({ currency = 'USD', onNotify }) => {
             <div className="mt-6 pt-4 border-t border-white/10 flex justify-center">
               <button
                 onClick={handleCopy}
-                className="inline-flex items-center gap-2 px-5 py-2 rounded-xl glass-input text-xs font-semibold text-slate-700 dark:text-slate-200 hover:text-white hover:border-purple-500/40 hover:bg-white/10 transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-2 rounded-xl glass-input text-xs font-semibold text-slate-700 dark:text-slate-200 hover:text-white hover:border-teal-500/40 hover:bg-white/10 transition-colors"
               >
-                {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4 text-purple-400" />}
+                {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4 text-teal-400" />}
                 <span>{copied ? 'Copied Tip Summary!' : 'Copy Tip Summary'}</span>
               </button>
             </div>

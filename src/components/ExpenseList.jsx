@@ -17,7 +17,7 @@ import { formatCurrency } from '../utils/currency';
 export const ExpenseList = ({
   expenses = [],
   members = [],
-  currency = 'USD',
+  currency = 'INR',
   onDeleteExpense,
   onOpenAddExpense,
   onNotify,
@@ -38,12 +38,12 @@ export const ExpenseList = ({
   };
 
   return (
-    <section id="expenses" className="py-6 relative">
+    <section id="expenses" className="py-3 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full glass-panel border-purple-500/20 text-xs font-semibold text-purple-600 dark:text-purple-300 mb-1.5">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full neu-inset text-xs font-semibold text-teal-600 dark:text-teal-300 mb-1.5">
               <Receipt className="w-3.5 h-3.5 text-cyan-500 dark:text-cyan-400" />
               <span>Activity & Receipts</span>
             </div>
@@ -57,7 +57,7 @@ export const ExpenseList = ({
 
           <button
             onClick={onOpenAddExpense}
-            className="self-start sm:self-auto flex items-center gap-2 px-4 py-2 rounded-2xl bg-gradient-to-r from-purple-600 to-cyan-500 text-white text-xs font-bold shadow-glass-glow hover:opacity-95 transition-all"
+            className="self-start sm:self-auto neu-btn-primary flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs font-bold"
           >
             <Plus className="w-4 h-4" />
             <span>Add Expense</span>
@@ -65,15 +65,15 @@ export const ExpenseList = ({
         </div>
 
         {/* Filter and Search Bar */}
-        <div className="glass-panel p-3.5 rounded-3xl mb-5 flex flex-col md:flex-row items-center justify-between gap-3">
+        <div className="neu-flat p-3.5 sm:p-4 rounded-3xl mb-5 flex flex-col md:flex-row items-center justify-between gap-3">
           {/* Category Pills */}
           <div className="flex items-center gap-2 overflow-x-auto w-full md:w-auto py-1 px-1">
             <button
               onClick={() => setSelectedCategory('all')}
-              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 ${
+              className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 ${
                 selectedCategory === 'all'
-                  ? 'bg-purple-600 text-white shadow-sm'
-                  : 'glass-input text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                  ? 'neu-btn-primary'
+                  : 'neu-btn text-slate-600 dark:text-slate-400'
               }`}
             >
               All ({expenses.length})
@@ -84,8 +84,8 @@ export const ExpenseList = ({
                 onClick={() => setSelectedCategory(cat.id)}
                 className={`px-3 py-1.5 rounded-xl text-xs font-medium transition-all shrink-0 ${
                   selectedCategory === cat.id
-                    ? 'bg-purple-600 text-white shadow-sm font-bold'
-                    : 'glass-input text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                    ? 'neu-btn-primary font-bold'
+                    : 'neu-btn text-slate-600 dark:text-slate-400'
                 }`}
               >
                 {cat.name}
@@ -101,12 +101,12 @@ export const ExpenseList = ({
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search expenses..."
-              className="w-full glass-input pl-8 pr-7 py-1.5 rounded-xl text-xs text-slate-900 dark:text-white focus:outline-none placeholder-slate-400"
+              className="w-full neu-input pl-8 pr-7 py-2 rounded-xl text-xs focus:outline-none placeholder-slate-400"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute right-2.5 top-2 text-slate-400 hover:text-slate-600 dark:hover:text-white"
+                className="absolute right-2.5 top-2.5 text-slate-400 hover:text-slate-600 dark:hover:text-white"
               >
                 <X className="w-3.5 h-3.5" />
               </button>
@@ -116,28 +116,74 @@ export const ExpenseList = ({
 
         {/* Expenses List */}
         {filteredExpenses.length === 0 ? (
-          <div className="glass-panel p-10 rounded-3xl text-center">
-            <div className="w-12 h-12 rounded-2xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center mx-auto text-slate-400 mb-3">
-              <Receipt className="w-6 h-6" />
+          <div className="neu-flat p-8 sm:p-12 rounded-3xl text-center relative overflow-hidden">
+            <div className="w-16 h-16 rounded-2xl neu-icon-socket flex items-center justify-center mx-auto text-teal-500 mb-4">
+              <Receipt className="w-8 h-8" />
             </div>
-            <h4 className="text-base font-bold text-slate-900 dark:text-white mb-1">
-              No Expenses Found
+            
+            <h4 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-1.5">
+              {searchQuery || selectedCategory !== 'all' ? 'No Matching Expenses Found' : 'Your Group Ledger is Ready!'}
             </h4>
-            <p className="text-xs text-slate-500 dark:text-slate-400 max-w-sm mx-auto mb-4">
+            
+            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-md mx-auto mb-6 leading-relaxed">
               {searchQuery || selectedCategory !== 'all'
-                ? 'Try adjusting your filters or search query.'
-                : 'Start tracking by logging the first bill or group expense!'}
+                ? 'Try adjusting your category filter or clearing the search bar to find matching receipts.'
+                : 'Shared meals, taxi fares, stays, or groceries? Log your first expense and let Splid calculate the math.'}
             </p>
+
+            {/* Quick Starter Suggestions */}
+            {expenses.length === 0 && (
+              <div className="max-w-xl mx-auto mb-6 pt-4 border-t border-slate-200/60 dark:border-white/5">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold block mb-3">
+                  Quick Ideas to Log:
+                </span>
+                <div className="flex flex-wrap items-center justify-center gap-2">
+                  <button
+                    type="button"
+                    onClick={onOpenAddExpense}
+                    className="neu-btn px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-teal-500 flex items-center gap-1.5"
+                  >
+                    <span>🍕 Group Dinner</span>
+                    <span className="text-teal-600 dark:text-teal-400 font-mono font-bold">₹1,850</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={onOpenAddExpense}
+                    className="neu-btn px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-cyan-500 flex items-center gap-1.5"
+                  >
+                    <span>🚕 Cab / Taxi</span>
+                    <span className="text-cyan-600 dark:text-cyan-400 font-mono font-bold">₹650</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={onOpenAddExpense}
+                    className="neu-btn px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-emerald-500 flex items-center gap-1.5"
+                  >
+                    <span>🏨 Hotel / Stay</span>
+                    <span className="text-emerald-600 dark:text-emerald-400 font-mono font-bold">₹6,200</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={onOpenAddExpense}
+                    className="neu-btn px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-[#f07864] flex items-center gap-1.5"
+                  >
+                    <span>🛒 Groceries</span>
+                    <span className="text-[#f07864] font-mono font-bold">₹1,200</span>
+                  </button>
+                </div>
+              </div>
+            )}
+
             <button
               onClick={onOpenAddExpense}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold text-white bg-purple-600 hover:bg-purple-500 transition-colors shadow-sm"
+              className="neu-btn-primary inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-xs sm:text-sm font-bold shadow-lg"
             >
               <Plus className="w-4 h-4" />
               <span>Add First Expense</span>
             </button>
           </div>
         ) : (
-          <div className="space-y-3">
+          <div className="space-y-3.5">
             <AnimatePresence>
               {filteredExpenses.map((expense) => {
                 const categoryObj = getCategoryById(expense.category);
@@ -153,12 +199,12 @@ export const ExpenseList = ({
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.98 }}
-                    className="glass-panel-elevated p-4 sm:p-5 rounded-3xl border border-slate-200 dark:border-white/10 transition-all hover:border-purple-500/30"
+                    className="neu-flat p-4 sm:p-5 rounded-3xl transition-all hover:-translate-y-0.5"
                   >
                     <div className="flex items-center justify-between gap-3 sm:gap-4">
                       {/* Left: Category Icon & Details */}
-                      <div className="flex items-center gap-3 min-w-0">
-                        <div className={`w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 border ${categoryObj.color}`}>
+                      <div className="flex items-center gap-3 sm:gap-3.5 min-w-0">
+                        <div className={`w-12 h-12 rounded-2xl neu-icon-socket flex items-center justify-center shrink-0 ${categoryObj.color.split(' ')[0]}`}>
                           <Icon className="w-5 h-5" />
                         </div>
 
@@ -167,7 +213,7 @@ export const ExpenseList = ({
                             {expense.title}
                           </h4>
                           <div className="flex flex-wrap items-center gap-2 text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
-                            <span className="font-semibold text-purple-600 dark:text-purple-400">
+                            <span className="font-semibold text-teal-600 dark:text-teal-400">
                               Paid by {payerName}
                             </span>
                             <span>•</span>
@@ -190,7 +236,7 @@ export const ExpenseList = ({
                       </div>
 
                       {/* Right: Amount & Actions */}
-                      <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+                      <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
                         <div className="text-right">
                           <div className="text-base sm:text-lg font-black font-mono text-slate-900 dark:text-white">
                             {formatCurrency(expense.amount, currency)}
@@ -202,7 +248,7 @@ export const ExpenseList = ({
 
                         <button
                           onClick={() => setExpandedId(isExpanded ? null : expense.id)}
-                          className="p-1.5 rounded-xl glass-input text-slate-400 hover:text-slate-700 dark:hover:text-white transition-colors"
+                          className="neu-btn p-2 rounded-xl text-slate-500 hover:text-slate-800 dark:hover:text-white"
                           title="View split breakdown"
                         >
                           {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
@@ -215,7 +261,7 @@ export const ExpenseList = ({
                               if (onNotify) onNotify('Expense deleted', 'info');
                             }
                           }}
-                          className="p-1.5 rounded-xl glass-input text-slate-400 hover:text-red-500 transition-colors"
+                          className="neu-btn p-2 rounded-xl text-slate-400 hover:text-red-500"
                           title="Delete expense"
                         >
                           <Trash2 className="w-4 h-4" />
@@ -231,13 +277,13 @@ export const ExpenseList = ({
                           animate={{ opacity: 1, height: 'auto' }}
                           exit={{ opacity: 0, height: 0 }}
                           transition={{ duration: 0.2 }}
-                          className="mt-3.5 pt-3.5 border-t border-slate-200 dark:border-white/5 overflow-hidden"
+                          className="mt-3.5 pt-3.5 border-t border-slate-300/60 dark:border-white/5 overflow-hidden"
                         >
-                          <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold mb-2">
+                          <div className="text-[10px] font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 font-bold mb-2">
                             Individual Shares ({expense.splitType || 'equal'} split):
                           </div>
 
-                          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
                             {(expense.splitWith || members.map((m) => m.id)).map((memberId) => {
                               const member = members.find((m) => m.id === memberId);
                               if (!member) return null;
@@ -253,12 +299,12 @@ export const ExpenseList = ({
                               return (
                                 <div
                                   key={memberId}
-                                  className="p-2.5 rounded-xl glass-panel text-xs flex items-center justify-between"
+                                  className="neu-sunken p-2.5 rounded-xl text-xs flex items-center justify-between"
                                 >
                                   <span className="text-slate-700 dark:text-slate-300 font-medium truncate">
                                     {member.name}
                                   </span>
-                                  <span className="font-mono font-bold text-purple-600 dark:text-purple-300">
+                                  <span className="font-mono font-bold text-teal-600 dark:text-teal-300">
                                     {formatCurrency(share, currency)}
                                   </span>
                                 </div>

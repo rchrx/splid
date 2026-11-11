@@ -17,31 +17,31 @@ export const Toast = ({ toasts = [], onDismiss }) => {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 10, scale: 0.95 }}
               transition={{ duration: 0.2 }}
-              className={`pointer-events-auto flex items-center justify-between gap-3 p-4 rounded-2xl glass-panel-elevated shadow-glass border ${
-                isError
-                  ? 'border-red-500/30 bg-red-950/40 text-red-200'
-                  : isInfo
-                  ? 'border-cyan-500/30 bg-cyan-950/40 text-cyan-200'
-                  : 'border-purple-500/30 bg-midnight-900/90 text-slate-100'
-              }`}
+              className="pointer-events-auto flex items-center justify-between gap-3 p-4 rounded-2xl neu-raised text-slate-800 dark:text-slate-100"
             >
               <div className="flex items-center gap-3">
-                {isError ? (
-                  <AlertCircle className="w-5 h-5 text-red-400 shrink-0" />
-                ) : isInfo ? (
-                  <Info className="w-5 h-5 text-cyan-400 shrink-0" />
-                ) : (
-                  <CheckCircle2 className="w-5 h-5 text-electric-purple shrink-0" />
-                )}
+                <div className="neu-icon-socket p-2 rounded-xl flex items-center justify-center shrink-0">
+                  {isError ? (
+                    <AlertCircle className="w-5 h-5 text-red-500 shrink-0" />
+                  ) : isInfo ? (
+                    <Info className="w-5 h-5 text-cyan-500 shrink-0" />
+                  ) : (
+                    <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" />
+                  )}
+                </div>
                 <div>
-                  {toast.title && <div className="text-xs font-semibold uppercase tracking-wider text-purple-300">{toast.title}</div>}
-                  <div className="text-sm font-medium">{toast.message}</div>
+                  {toast.title && (
+                    <div className="text-xs font-semibold uppercase tracking-wider text-teal-600 dark:text-teal-300">
+                      {toast.title}
+                    </div>
+                  )}
+                  <div className="text-xs sm:text-sm font-medium">{toast.message}</div>
                 </div>
               </div>
 
               <button
                 onClick={() => onDismiss && onDismiss(toast.id)}
-                className="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-white/10 transition-colors"
+                className="neu-btn p-1.5 rounded-xl text-slate-400 hover:text-slate-700 dark:hover:text-white"
                 aria-label="Dismiss toast"
               >
                 <X className="w-4 h-4" />
@@ -53,4 +53,3 @@ export const Toast = ({ toasts = [], onDismiss }) => {
     </div>
   );
 };
-

@@ -5,8 +5,11 @@ export const exportGroupReportPDF = ({
   group,
   balances = [],
   simplifiedDebts = [],
-  currency = 'USD',
+  currency = 'INR',
 }) => {
+  const formatPdfAmount = (amt) => {
+    return formatCurrency(amt, currency).replace(/₹/g, 'Rs. ');
+  };
   const doc = new jsPDF({
     unit: 'mm',
     format: 'a4',
@@ -16,15 +19,15 @@ export const exportGroupReportPDF = ({
   let y = 18;
 
   // Header Banner Card
-  doc.setFillColor(15, 23, 42);
+  doc.setFillColor(57, 68, 93);
   doc.roundedRect(14, 12, pageWidth - 28, 28, 4, 4, 'F');
 
   doc.setTextColor(255, 255, 255);
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(16);
-  doc.text(`DIBBL • ${group.name.toUpperCase()}`, 22, 24);
+  doc.text(`SPLID • ${group.name.toUpperCase()}`, 22, 24);
 
-  doc.setTextColor(192, 132, 252);
+  doc.setTextColor(40, 200, 180);
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(9);
   doc.text('SPLIT SMART. PAY FAIR • OFFICIAL GROUP EXPENSE REPORT', 22, 31);
@@ -57,8 +60,8 @@ export const exportGroupReportPDF = ({
 
   doc.setFontSize(12);
   doc.setTextColor(15, 23, 42);
-  doc.text(formatCurrency(totalExpense, currency), 22, y + 16);
-  doc.text(formatCurrency(totalSettled, currency), 85, y + 16);
+  doc.text(formatPdfAmount(totalExpense), 22, y + 16);
+  doc.text(formatPdfAmount(totalSettled), 85, y + 16);
   doc.text(`${simplifiedDebts.length} Transfers Required`, 145, y + 16);
 
   y += 28;
@@ -82,9 +85,9 @@ export const exportGroupReportPDF = ({
       doc.roundedRect(14, y, pageWidth - 28, 10, 2, 2, 'F');
       doc.setFont('helvetica', 'bold');
       doc.setFontSize(9);
-      doc.setTextColor(88, 28, 135);
+      doc.setTextColor(13, 148, 136);
       doc.text(`${idx + 1}.  ${debt.fromName}  pays  ${debt.toName}`, 20, y + 6.5);
-      doc.text(formatCurrency(debt.amount, currency), pageWidth - 20, y + 6.5, { align: 'right' });
+      doc.text(formatPdfAmount(debt.amount), pageWidth - 20, y + 6.5, { align: 'right' });
       y += 13;
     });
   }
@@ -114,16 +117,16 @@ export const exportGroupReportPDF = ({
     doc.setFontSize(9);
     doc.setTextColor(15, 23, 42);
     doc.text(m.name, 20, y + 4);
-    doc.text(formatCurrency(m.paid, currency), 80, y + 4);
-    doc.text(formatCurrency(m.share, currency), 125, y + 4);
+    doc.text(formatPdfAmount(m.paid), 80, y + 4);
+    doc.text(formatPdfAmount(m.share), 125, y + 4);
 
     doc.setFont('helvetica', 'bold');
     if (m.net > 0.01) {
       doc.setTextColor(5, 150, 105);
-      doc.text(`+ ${formatCurrency(m.net, currency)} (Gets back)`, pageWidth - 20, y + 4, { align: 'right' });
+      doc.text(`+ ${formatPdfAmount(m.net)} (Gets back)`, pageWidth - 20, y + 4, { align: 'right' });
     } else if (m.net < -0.01) {
       doc.setTextColor(225, 29, 72);
-      doc.text(`- ${formatCurrency(Math.abs(m.net), currency)} (Owes)`, pageWidth - 20, y + 4, { align: 'right' });
+      doc.text(`- ${formatPdfAmount(Math.abs(m.net))} (Owes)`, pageWidth - 20, y + 4, { align: 'right' });
     } else {
       doc.setTextColor(100, 116, 139);
       doc.text('Settled Up', pageWidth - 20, y + 4, { align: 'right' });
@@ -167,8 +170,8 @@ export const exportGroupReportPDF = ({
 
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(10);
-    doc.setTextColor(88, 28, 135);
-    doc.text(formatCurrency(exp.amount, currency), pageWidth - 20, y + 7, { align: 'right' });
+    doc.setTextColor(13, 148, 136);
+    doc.text(formatPdfAmount(exp.amount), pageWidth - 20, y + 7, { align: 'right' });
 
     y += 15;
   });
@@ -178,8 +181,8 @@ export const exportGroupReportPDF = ({
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(7.5);
   doc.setTextColor(148, 163, 184);
-  doc.text('Dibbl Intelligent Debt Simplification • 100% Mathematically Balanced', pageWidth / 2, pageHeight - 8, { align: 'center' });
+  doc.text('Splid Intelligent Debt Simplification • 100% Mathematically Balanced', pageWidth / 2, pageHeight - 8, { align: 'center' });
 
-  doc.save(`${group.name.replace(/\s+/g, '_')}_Dibbl_Report.pdf`);
+  doc.save(`${group.name.replace(/\s+/g, '_')}_Splid_Report.pdf`);
 };
 
